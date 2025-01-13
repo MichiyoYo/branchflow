@@ -126,7 +126,7 @@ export const Footer = () => {
         {/* Bottom Section */}
         <div className='mt-8 pt-8 border-t border-purple-100'>
           <div className='flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0'>
-            <div className='text-slate-400 text-xs '>
+            <div className='text-slate-400 text-xs text-center md:text-left '>
               BranchFlow.dev © 2025 | All rights reserved.
               <br />
               Made with ❤️ by{' '}

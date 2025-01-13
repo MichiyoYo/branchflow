@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Loader2, Clock } from 'lucide-react';
+import { Loader2, Clock, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { getPriorityColor } from './utils';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 interface TaskBreakdownProps {
   transcript: string;
@@ -77,25 +79,12 @@ const TaskBreakdown: React.FC<TaskBreakdownProps> = ({
     }
   };
 
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case 'high':
-        return 'text-red-500';
-      case 'medium':
-        return 'text-yellow-500';
-      case 'low':
-        return 'text-green-500';
-      default:
-        return 'text-slate-500';
-    }
-  };
-
   return (
-    <div className='w-full max-w-3xl mx-auto mt-8'>
+    <div className=' flex-col gap-5 max-w-3xl flex justify-center items-center mx-auto mt-8'>
       <Button
         onClick={analyzeTasks}
         disabled={isAnalyzing || !transcript}
-        className=' bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600'
+        className='w-fit  bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600'
       >
         {isAnalyzing ? (
           <div className='flex items-center'>
@@ -103,11 +92,17 @@ const TaskBreakdown: React.FC<TaskBreakdownProps> = ({
             Analyzing...
           </div>
         ) : (
-          'Analyze Recording'
+          'Analyze Recording ✨'
         )}
       </Button>
 
-      {error && <div className='text-red-500 mt-4 text-center'>{error}</div>}
+      {error && (
+        <Alert variant='destructive'>
+          <AlertCircle className='h-4 w-4' />
+          <AlertTitle>Error</AlertTitle>
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      )}
 
       <AnimatePresence>
         {tasks.length > 0 && (
@@ -125,7 +120,7 @@ const TaskBreakdown: React.FC<TaskBreakdownProps> = ({
                       {task.title}
                     </CardTitle>
                     <span
-                      className={`text-sm font-medium ${getPriorityColor(
+                      className={`text-xs font-medium ${getPriorityColor(
                         task.priority
                       )}`}
                     >

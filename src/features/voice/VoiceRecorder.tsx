@@ -102,7 +102,9 @@ const VoiceRecorder = () => {
         </CardContent>
       </Card>
 
-      <TaskBreakdown transcript={transcript} />
+      <div className='w-full flex justify-center'>
+        <TaskBreakdown transcript={transcript} />
+      </div>
     </div>
   );
 };
