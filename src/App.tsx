@@ -1,11 +1,15 @@
-import './App.css';
-import LandingPage from './features/landing/LandingPage';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { LandingPage } from './features/pages/LandingPage';
+import { BrainDump } from './features/pages/Braindump';
 
 function App() {
   return (
-    <main>
-      <LandingPage />
-    </main>
+    <Router>
+      <Routes>
+        <Route path='/' element={<LandingPage />} />
+        <Route path='/brain-dump' element={<BrainDump />} />
+      </Routes>
+    </Router>
   );
 }
 

@@ -1,5 +1,3 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
 import {
   Card,
   CardHeader,
@@ -8,8 +6,10 @@ import {
 } from '@/components/ui/card';
 import { GitBranch, Mic, Calendar, Brain } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { Page } from '@/components/layout';
 
-const LandingPage = () => {
+export const LandingPage = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -32,7 +32,13 @@ const LandingPage = () => {
   };
 
   return (
-    <div className='w-full px-8 py-16'>
+    // <div className='min-h-screen bg-gradient-to-b from-white via-purple-50 to-white overflow-hidden'>
+    //   <div className='w-full px-8 py-16'>
+
+    //   </div>
+    // </div>
+
+    <Page showBackButton={false}>
       <motion.div
         className='text-center mb-16'
         initial={{ opacity: 0, y: 20 }}
@@ -53,7 +59,7 @@ const LandingPage = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          Transform your thoughts into structured development tasks with AI ✨
+          Transform your thoughts into structured development tasks with AI
         </motion.p>
         <motion.div
           className='flex justify-center gap-4'
@@ -64,6 +70,7 @@ const LandingPage = () => {
           <Button
             size='lg'
             className='bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white shadow-lg hover:shadow-xl transition-all hover:scale-105'
+            onClick={() => (window.location.href = '/brain-dump')}
           >
             Get Started
           </Button>
@@ -102,13 +109,13 @@ const LandingPage = () => {
           {
             icon: <Calendar className='h-6 w-6 text-indigo-500' />,
             title: 'Calendar Sync',
-            description: 'Seamless integration with your existing calendars',
+            description: 'Seamless integration with your  calendars',
           },
         ].map((feature, index) => (
           <motion.div key={index} variants={itemVariants}>
             <Card className='bg-white/70 border-purple-100 hover:shadow-lg hover:shadow-purple-100 transition-all backdrop-blur-sm group hover:-translate-y-1 duration-300'>
               <CardHeader>
-                <div className='flex justify-center items-center gap-2'>
+                <div className='flex items-center gap-2'>
                   <motion.div
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.5 }}
@@ -155,7 +162,7 @@ const LandingPage = () => {
           }}
         />
       </div>
-    </div>
+    </Page>
   );
 };
 
