@@ -5,7 +5,7 @@ export const Footer = () => {
   return (
     <footer className='w-full bg-white/50 backdrop-blur-sm border-t border-purple-100 mt-auto'>
       <div className='max-w-7xl mx-auto px-4 py-8'>
-        <div className='grid grid-cols-1 md:grid-cols-4 gap-8 font-light text-sm'>
+        <div className='grid grid-cols-2 md:grid-cols-4 gap-4 font-light text-sm'>
           {/* Product */}
           <div>
             <h3 className='font-semibold text-slate-800 mb-3'>Product</h3>

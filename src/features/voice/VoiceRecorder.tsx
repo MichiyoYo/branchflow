@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import SpeechRecognition, {
   useSpeechRecognition,
 } from 'react-speech-recognition';
+import TaskBreakdown from './TaskBreakdown';
 
 const VoiceRecorder = () => {
   const {
@@ -100,6 +101,8 @@ const VoiceRecorder = () => {
           </div>
         </CardContent>
       </Card>
+
+      <TaskBreakdown transcript={transcript} />
     </div>
   );
 };
