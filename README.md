@@ -25,7 +25,7 @@ BranchFlow is an AI-powered task management tool that helps developers organize 
 ### AI Integration
 
 - Ollama for local AI processing
-- llama2 model for task analysis
+- llama3.2 model for task analysis
 
 ### Core Libraries
 
