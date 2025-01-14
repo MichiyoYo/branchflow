@@ -1,50 +1,99 @@
-# React + TypeScript + Vite
+# BranchFlow.dev
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+BranchFlow is an AI-powered task management tool that helps developers organize their thoughts and project ideas into structured tasks. Using voice input and AI analysis, it converts verbal project descriptions into organized, prioritized tasks that can be managed in a Kanban board interface.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🎙️ **Voice-to-Task Conversion**: Record your project ideas verbally
+- 🤖 **AI Task Analysis**: Automatically break down projects into structured tasks
+- 📋 **Smart Task Generation**: Get estimated times, priorities, and dependencies
+- 📊 **Kanban Board**: Organize tasks in a drag-and-drop interface
+- 💾 **Multiple Export Options**: Save tasks in various formats (JSON, Markdown)
+- 🔄 **Different Views**: Switch between board, list, and timeline views
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Frontend
 
-- Configure the top-level `parserOptions` property like this:
+- React 18 with TypeScript
+- Vite for build tooling
+- Tailwind CSS for styling
+- shadcn/ui for UI components
+- Framer Motion for animations
+- React Router for navigation
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### AI Integration
+
+- Ollama for local AI processing
+- llama2 model for task analysis
+
+### Core Libraries
+
+- `@dnd-kit` for drag-and-drop functionality
+- `lucide-react` for icons
+- `framer-motion` for animations
+- `react-router-dom` for routing
+
+## Getting Started
+
+### Prerequisites
+
+1. Install [Node.js](https://nodejs.org/) (version 16 or higher)
+2. Install [Ollama](https://ollama.ai/)
+3. Pull the llama2 model:
+   ```bash
+   ollama pull llama2
+   ```
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/yourusername/branchflow.git
+   cd branchflow
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Open http://localhost:5173 in your browser
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── ui/          # shadcn components
+│   └── layout/      # Layout components (Header, Footer)
+├── features/
+│   ├── landing/     # Landing page
+│   ├── brain-dump/  # Voice recording and AI analysis
+│   ├── voice/       # Voice recording components
+│   └── tasks/       # Task management and Kanban board
+├── lib/            # Utilities and configurations
+└── types/         # TypeScript types and interfaces
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Features in Development
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- [ ] Task filtering and search
+- [ ] Timeline view
+- [ ] Project templates
+- [ ] Task statistics and analytics
+- [ ] Integration with project management tools
+- [ ] Collaborative features
+- [ ] Dark mode
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
