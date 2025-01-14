@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Loader2, Clock, AlertCircle } from 'lucide-react';
+import { Loader2, Clock, AlertCircle, LayoutGrid } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { getPriorityColor } from './utils';
+import { getPriorityColor, saveToLocalStorage } from '../utils';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Task } from '@/types';
+import { Link } from 'react-router-dom';
+import { TaskExport } from './TaskExport';
 
 interface TaskBreakdownProps {
   transcript: string;
@@ -64,6 +67,7 @@ const TaskBreakdown: React.FC<TaskBreakdownProps> = ({
       try {
         const parsedTasks = JSON.parse(data.response);
         setTasks(parsedTasks);
+        saveToLocalStorage(parsedTasks); // Save tasks when they're generated
         if (onTasksGenerated) {
           onTasksGenerated(parsedTasks);
         }
@@ -147,6 +151,16 @@ const TaskBreakdown: React.FC<TaskBreakdownProps> = ({
                 </CardContent>
               </Card>
             ))}
+            <div className='space-y-4 mt-8'>
+              <TaskExport tasks={tasks} />
+
+              <Link to='/board'>
+                <Button className='w-full bg-slate-800 hover:bg-slate-900 text-white mt-4'>
+                  <LayoutGrid className='w-4 h-4 mr-2' />
+                  View Tasks in Kanban Board
+                </Button>
+              </Link>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
