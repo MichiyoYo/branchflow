@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Download, Clipboard, Save } from 'lucide-react';
+import { Download, Clipboard, Save, AlertCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Task } from '@/types';
 import { copyToClipboard, exportToJson, saveToLocalStorage } from '../utils';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 interface TaskExportProps {
   tasks: Task[];
 }
 
 export const TaskExport: React.FC<TaskExportProps> = ({ tasks }) => {
+  const [error, setError] = useState<string | null>(null);
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -26,7 +28,7 @@ export const TaskExport: React.FC<TaskExportProps> = ({ tasks }) => {
         <CardContent>
           <div className='flex flex-col sm:flex-row gap-3'>
             <Button
-              onClick={() => saveToLocalStorage(tasks)}
+              onClick={() => saveToLocalStorage(tasks, setError)}
               className='flex items-center gap-2 bg-purple-500 hover:bg-purple-600'
             >
               <Save className='h-4 w-4' />
@@ -49,6 +51,13 @@ export const TaskExport: React.FC<TaskExportProps> = ({ tasks }) => {
           </div>
         </CardContent>
       </Card>
+      {error && (
+        <Alert variant='destructive'>
+          <AlertCircle className='h-4 w-4' />
+          <AlertTitle>Error</AlertTitle>
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      )}
     </motion.div>
   );
 };

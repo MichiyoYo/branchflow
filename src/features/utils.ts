@@ -26,20 +26,29 @@ export const getKanbanCardPriorityColor = (priority: string) => {
   }
 };
 
-export const saveToLocalStorage = (tasks: Task[]) => {
-  const savedTasks = JSON.parse(
-    localStorage.getItem('branchflow-tasks') || '[]'
-  );
-  const updatedTasks = [
-    ...savedTasks,
-    {
-      id: Date.now(),
-      timestamp: new Date().toISOString(),
-      status: 'todo',
-      tasks: tasks,
-    },
-  ];
-  localStorage.setItem('branchflow-tasks', JSON.stringify(updatedTasks));
+export const saveToLocalStorage = (
+  tasks: Task[],
+  setError: (error: string | null) => void
+) => {
+  try {
+    const savedTasks = JSON.parse(
+      localStorage.getItem('branchflow-tasks') || '[]'
+    );
+    const updatedTasks = [
+      ...savedTasks,
+      {
+        id: Date.now(),
+        timestamp: new Date().toISOString(),
+        status: 'todo',
+        tasks: tasks,
+      },
+    ];
+    localStorage.setItem('branchflow-tasks', JSON.stringify(updatedTasks));
+  } catch (error) {
+    console.error('Error saving tasks:', error);
+    setError('Failed to save tasks. Please try again.');
+    return false;
+  }
 };
 
 export const exportToJson = (tasks: Task[]) => {

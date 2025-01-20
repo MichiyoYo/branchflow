@@ -67,12 +67,12 @@ const TaskBreakdown: React.FC<TaskBreakdownProps> = ({
       try {
         const parsedTasks = JSON.parse(data.response);
         setTasks(parsedTasks);
-        saveToLocalStorage(parsedTasks); // Save tasks when they're generated
+        saveToLocalStorage(parsedTasks, setError); // Save tasks when they're generated
         if (onTasksGenerated) {
           onTasksGenerated(parsedTasks);
         }
-      } catch (err) {
-        console.error('Error parsing response:', err);
+      } catch (parseError) {
+        console.error('Error parsing response:', parseError);
         setError('Error parsing AI response. Please try again.');
       }
     } catch (err) {

@@ -6,6 +6,13 @@ export interface Task {
   dependencies?: string[];
 }
 
+export interface TaskGroup {
+  id: number;
+  timestamp: string;
+  status: string;
+  tasks: Task[];
+}
+
 export interface KanbanColumn {
   title: string;
   tasks?: Task[];
